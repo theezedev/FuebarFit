@@ -2,15 +2,21 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import HomeScreen1 from "../screens/HomeScreen";
 
 
 const Tab = createBottomTabNavigator();
 
+// const HomeScreen = () => (
+//   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//     <Text>Home Screen</Text>
+//   </View>
+// );
+
 const HomeScreen = () => (
-  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text>Home Screen</Text>
-  </View>
+  <HomeScreen1 />
 );
+
 
 const ProfileScreen = () => (
   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

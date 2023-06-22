@@ -1,133 +1,163 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Platform } from 'react-native';
+import { StyleSheet, Text, View, Platform, ScrollView, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-
-import CardHeader from './components/CardHeader';
-import DiceButton from './components/DiceButton';
-import WorkoutRow from './components/WorkoutContainer';
-import TodaysDate from './components/TodaysDate';
-import BottomNav from './components/BottomNav';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+// import HomeScreen1 from "./screens/HomeScreen";
 
 
-const upperArray = ['Push Ups', 'Lateral Raises', 'Shoulder Press', 'Dumbell Press'];
-const coreArray = [1, 2, 3, 4, 5];
-const lowerArray = [1, 2, 3, 4, 5];
+const Tab = createBottomTabNavigator();
+const logo = {
+  uri: 'https://reactnative.dev/img/tiny_logo.png',
+  width: 64,
+  height: 64,
+};
+
+const HomeScreen = () => (
+  // <HomeScreen1 />
+  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Text>Fit Screen</Text>
+  </View>
+);
+
+
+const ProfileScreen = () => (
+  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <Text>Profile Screen</Text>
+  </View>
+);
+
+const SettingsScreen = () => (
+  <ScrollView>
+    <Text style={{fontSize: 96}}>Scroll me plz</Text>
+    <Image source={logo} />
+    <Image source={logo} />
+    <Image source={logo} />
+    <Image source={logo} />
+    <Image source={logo} />
+    <Text style={{fontSize: 96}}>If you like</Text>
+    <Image source={logo} />
+    <Image source={logo} />
+    <Image source={logo} />
+    <Image source={logo} />
+    <Image source={logo} />
+    <Text style={{fontSize: 96}}>Scrolling down</Text>
+    <Image source={logo} />
+    <Image source={logo} />
+    <Image source={logo} />
+    <Image source={logo} />
+    <Image source={logo} />
+    <Text style={{fontSize: 96}}>What's the best</Text>
+    <Image source={logo} />
+    <Image source={logo} />
+    <Image source={logo} />
+    <Image source={logo} />
+    <Image source={logo} />
+    <Text style={{fontSize: 96}}>Framework around?</Text>
+    <Image source={logo} />
+    <Image source={logo} />
+    <Image source={logo} />
+    <Image source={logo} />
+    <Image source={logo} />
+    <Text style={{fontSize: 80}}>React Native</Text>
+  </ScrollView>
+);
+
+// const upperArray = ['Push Ups', 'Lateral Raises', 'Shoulder Press', 'Dumbell Press'];
+// const coreArray = [1, 2, 3, 4, 5];
+// const lowerArray = [1, 2, 3, 4, 5];
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <View style={styles.bodyContainer}>
-        <View style={styles.cardContainer}>
-          <View style={styles.cardHeader}>
-            <CardHeader leftLabel="Daily Counter" rightLabel={<TodaysDate />} />
-          </View>
-          <View style={styles.cardBody}>
-              <View style={styles.workoutContainer}>
-                <WorkoutRow workoutName='Push ups' workoutType='Upper' />
-                <WorkoutRow workoutName='Sit ups' workoutType='Core' />
-                <WorkoutRow workoutName='Squats' workoutType='Lower' />
-              </View>
-              <View style={styles.diceContainer}>
-                <DiceButton />
-              </View>
-          </View>
-          <View style={styles.cardFooter}>
-            <BottomNav />
-          </View>
-        </View>
-        <StatusBar style="light" />
-      </View>
+    <NavigationContainer style={styles.navStyle}>
+        <Tab.Navigator screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'FIT') {
+                iconName = focused? 'home': 'home';
+            } else if (route.name === 'SETTINGS') {
+                iconName = focused ? 'gear' : 'gear';
+            } else if (route.name === 'LEADERBOARD') {
+                iconName = focused ? 'trophy' : 'trophy';
+            } 
+            
+            return <FontAwesome name={iconName} size={size} color={color} />;
+
+          },
+          tabBarActiveTintColor: '#50508E',
+          tabBarInactiveTintColor: 'gray',
+          //Tab bar styles can be added here
+          tabBarStyle:{
+            paddingVertical: 5,
+            borderTopLeftRadius:15,
+            borderTopRightRadius:15,
+            backgroundColor:'white',
+            position:'absolute',
+            // height:100,
+            ...Platform.select({
+              ios: {
+                height:100,
+              },
+              default:{
+                height:80,
+                height:80,
+              }
+            }),
+            
+          },
+          tabBarLabelStyle:{paddingBottom:3},
+        })}
+        >
+        <Tab.Screen name="FIT" component={HomeScreen} 
+          options={{
+            title: 'Fit',
+            headerStyle: {
+              backgroundColor: '#50508E',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        />
+        <Tab.Screen name="LEADERBOARD" component={ProfileScreen} 
+          options={{
+            title: 'Leaderboard',
+            headerStyle: {
+              backgroundColor: '#50508E',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        />
+        <Tab.Screen name="SETTINGS" component={SettingsScreen}
+          options={{
+            title: 'Settings',
+            headerStyle: {
+              backgroundColor: '#50508E',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+          }}
+        />
+        </Tab.Navigator>
+      <StatusBar style="light" />
     </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  bodyContainer: {
-    flex: 1,
-    backgroundColor: '#1a0933',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height:'100%',
-    width:'100%',
-  },
-  cardContainer: {
-    minheight:'100%',
-    width:'100%',
-
-    ...Platform.select({
-        web: {
-          maxHeight: 600,
-          maxWidth:300,
-
-          minHeight: 600,
-          minWidth:300,
-        },
-        default:{
-          height:'100%',
-          width:'100%',
-        }
-    }),
-    backgroundColor: '#BABAFC',
-    borderTopLeftRadius:10,
-    borderTopRightRadius:10,
-    borderBottomLeftRadius:10,
-    borderBottomRightRadius:10,
-  },
-  cardHeader:{
-    backgroundColor: '#7A7AC4',
-    ...Platform.select({
-      web: {
-        height:50,
-      },
-      default:{
-        height:100,
-        height:100,
-      }
-    }),
-    
-    borderTopLeftRadius:10,
-    borderTopRightRadius:10,
-  },
-  cardBody:{
-    // height:'100%',
+  navStyle: {
+    flex:1,
     justifyContent:'space-between',
-    ...Platform.select({
-      web: {
-        // height:50,
-      },
-      default:{
-        // height:'100%',
-      }
-    }),
-    
+    alignItems:'center',
+    display:'row',
   },
-  cardFooter:{
-    backgroundColor: '#7A7AC4',
-    width:'100%',
-    ...Platform.select({
-      web: {
-        height:50,
-        position:'absolute',
-        bottom:0,
-      },
-      default:{
-        height:150,
-        position:'absolute',
-        bottom:0,
-      }
-    }),
 
-    borderBottomLeftRadius:10,
-    borderBottomRightRadius:10,
-  },
-  workoutContainer:{
-    margin:20,
-    height:50,
-  },
-  diceContainer:{
-    width:'100%',
-    // position:'absolute',
-    // bottom:0,
-    height:50,
-  }
 });
