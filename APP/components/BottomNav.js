@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import HomeScreen1 from "../screens/HomeScreen";
+import HomeScreen1 from "../HomeScreen";
 
 
 const Tab = createBottomTabNavigator();
@@ -18,7 +18,7 @@ const HomeScreen = () => (
 );
 
 
-const ProfileScreen = () => (
+const LeaderBoardScreen = () => (
   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
     <Text>Profile Screen</Text>
   </View>
@@ -55,7 +55,7 @@ const BottomNav = () => {
         })}
     >
       <Tab.Screen name="FIT" component={HomeScreen} />
-      <Tab.Screen name="LEADERBOARD" component={ProfileScreen} />
+      <Tab.Screen name="LEADERBOARD" component={LeaderBoardScreen} />
       <Tab.Screen name="SETTINGS" component={SettingsScreen} />
     </Tab.Navigator>
   );

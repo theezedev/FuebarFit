@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Platform, ScrollView, Image } from 'react-nativ
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-// import HomeScreen1 from "./screens/HomeScreen";
+import HomeScreen from "./HomeScreen";
 
 
 const Tab = createBottomTabNavigator();
@@ -14,17 +14,9 @@ const logo = {
   height: 64,
 };
 
-const HomeScreen = () => (
-  // <HomeScreen1 />
+const LeaderBoardScreen = () => (
   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text>Fit Screen</Text>
-  </View>
-);
-
-
-const ProfileScreen = () => (
-  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    <Text>Profile Screen</Text>
+    <Text>Leaderboard Screen</Text>
   </View>
 );
 
@@ -122,7 +114,7 @@ export default function App() {
             },
           }}
         />
-        <Tab.Screen name="LEADERBOARD" component={ProfileScreen} 
+        <Tab.Screen name="LEADERBOARD" component={LeaderBoardScreen} 
           options={{
             title: 'Leaderboard',
             headerStyle: {
