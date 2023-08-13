@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import MainNavigator from './MainNavigator'; // Create this component in the next step
 import LoginScreen from "./screens/Login";
 import CreateAccountScreen from './screens/CreateAccount';
 // import AppNav from './screens/appNav';
