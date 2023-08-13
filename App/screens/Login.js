@@ -125,20 +125,19 @@ export default function LoginScreen(){
                     <Text style={{color:'#fff',}}>Remember Me</Text>   
                 </View>
                 
-                <View style={{flexDirection:'row',justifyContent:'center'}}>
+                
+            </View>
+            <TouchableOpacity style={[styles.loginBtn, gloStyle.btnPrimary]} onPress={validateLogin}>
+                <Text style={gloStyle.txtWhite}>LOGIN</Text>
+            </TouchableOpacity>
+            <View style={{flexDirection:'row',justifyContent:'center'}}>
                     <Text style={{color:'#fff'}}> Don't have an account?</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('CreateAccount')}>
                     <View style={{  }}>
                         <Text style={{ color: '#e939b8' }}> Sign up.</Text>
                     </View>
                     </TouchableOpacity>
-                </View>
-                
-                 
             </View>
-            <TouchableOpacity style={[styles.loginBtn, gloStyle.btnPrimary]} onPress={validateLogin}>
-                <Text style={gloStyle.txtWhite}>LOGIN</Text>
-            </TouchableOpacity>
         </View>
     )
 }

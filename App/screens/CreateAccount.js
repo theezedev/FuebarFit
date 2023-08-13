@@ -1,5 +1,5 @@
 import {React, useState, useRef, useEffect} from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Switch, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Switch, Alert, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { MD5, SHA256 } from 'crypto-js';
@@ -94,97 +94,81 @@ export default function CreateAccountScreen(){
     
     return (
         <View style={[styles.container, gloStyle.bgApp]}>
-            <Image source={require('../assets/favicon.png')} style={styles.imgIcon} />
-            <Text style={gloStyle.txtH1}>Create an Account</Text>
-            <View style={styles.inputView} >
-                <TextInput  
-                    style={styles.inputText}
-                    id='inputEmail'
-                    placeholder="Email..." 
-                    placeholderTextColor="#003f5c"
-                    ref={passwordInputRef} // Add the ref to the password input
-                    value={email}
-                    clearButtonMode="always"
-                    onChangeText={(text) => setEmail(text)}/>
-            </View>
-            <View style={styles.inputView} >
-                <TextInput  
-                    style={styles.inputText}
-                    id='inputUsername'
-                    placeholder="Username..." 
-                    placeholderTextColor="#003f5c"
-                    ref={passwordInputRef} // Add the ref to the password input
-                    value={email}
-                    clearButtonMode="always"
-                    onChangeText={(text) => setUsername(text)}/>
-            </View>
-            <View style={styles.inputView} >
-                <TextInput  
-                    secureTextEntry
-                    id='inputPassword'
-                    ref={passwordInputRef} // Add the ref to the password input
-                    style={styles.inputText}
-                    placeholder="Password..." 
-                    placeholderTextColor="#003f5c"
-                    value={password}
-                    clearButtonMode="always"
-                    onChangeText={(text) => setPassword(text)}/>
-            </View>
-            <View style={styles.inputView} >
-                <TextInput  
-                    secureTextEntry
-                    id='inputPassword'
-                    ref={passwordInputRef} // Add the ref to the password input
-                    style={styles.inputText}
-                    placeholder="Re-type Password..." 
-                    placeholderTextColor="#003f5c"
-                    value={password}
-                    clearButtonMode="always"
-                    onChangeText={(text) => setRetypePassword(text)}/>
-            </View>
-            <TouchableOpacity style={[styles.loginBtn, gloStyle.btnPrimary]} onPress={validateLogin}>
-                <Text style={gloStyle.txtWhite}>CREATE ACCOUNT</Text>
-            </TouchableOpacity>
+            <ScrollView style={[styles.containerScroll,]} contentContainerStyle={{flex:1,flexDirection:'column',}}>
+                <View style={{flex:1,flexDirection:'column',alignItems:'center', justifyContent:'center',}}>
+                    <View style={styles.inputView} >
+                        <TextInput  
+                            style={styles.inputText}
+                            id='inputEmail'
+                            placeholder="Email..." 
+                            placeholderTextColor="#003f5c"
+                            ref={passwordInputRef} // Add the ref to the password input
+                            value={email}
+                            clearButtonMode="always"
+                            onChangeText={(text) => setEmail(text)}/>
+                    </View>
+                    <View style={styles.inputView} >
+                        <TextInput  
+                            style={styles.inputText}
+                            id='inputUsername'
+                            placeholder="Username..." 
+                            placeholderTextColor="#003f5c"
+                            ref={passwordInputRef} // Add the ref to the password input
+                            value={email}
+                            clearButtonMode="always"
+                            onChangeText={(text) => setUsername(text)}/>
+                    </View>
+                    <View style={styles.inputView} >
+                        <TextInput  
+                            secureTextEntry
+                            id='inputPassword'
+                            ref={passwordInputRef} // Add the ref to the password input
+                            style={styles.inputText}
+                            placeholder="Password..." 
+                            placeholderTextColor="#003f5c"
+                            value={password}
+                            clearButtonMode="always"
+                            onChangeText={(text) => setPassword(text)}/>
+                    </View>
+                    <View style={styles.inputView} >
+                        <TextInput  
+                            secureTextEntry
+                            id='inputPassword'
+                            ref={passwordInputRef} // Add the ref to the password input
+                            style={styles.inputText}
+                            placeholder="Re-type Password..." 
+                            placeholderTextColor="#003f5c"
+                            value={password}
+                            clearButtonMode="always"
+                            onChangeText={(text) => setRetypePassword(text)}/>
+                    </View>
+                    <TouchableOpacity style={[styles.loginBtn, gloStyle.btnPrimary]} onPress={validateLogin}>
+                        <Text style={gloStyle.txtWhite}>CREATE ACCOUNT</Text>
+                    </TouchableOpacity>
+                </View>
+                
+            </ScrollView>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      backgroundColor: '#f8f9fa',
-      flexDirection:'column',
-      alignItems: 'center',
-      justifyContent: 'center',
+        flex: 1,
+        backgroundColor: '#f8f9fa',
     },
-    containerCheck:{
-        width:'80%',
-        flexDirection:'row',
-        alignItems: 'center',
-    },
-    switchBasic:{
-        marginRight:10,
-    },
-    imgIcon:{
-        height:150,
-        width:150,
-    },
-    txtLogin:{
-      fontWeight:"bold",
-      fontSize:50,
-      marginBottom:20
-    },
-    imageIcon:{
-        resizeMode: 'contain'
+    containerScroll:{
+        flexDirection:'column',
+        // backgroundColor:'yellow',
     },
     inputView:{
-      width:"80%",
       backgroundColor:"#fff",
       borderRadius:5,
       height:50,
-      marginBottom:20,
+      marginBottom:10,
       justifyContent:"center",
-      padding:20,
+      padding:10,
+      width:"80%",
     },
     inputText:{
       height:50,
